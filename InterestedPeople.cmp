@@ -1,0 +1,31 @@
+<!--
+ - Created by JAKOBD on 10/19/2020.
+ -->
+
+<aura:component description="InterestedPeople" controller="InterestedPeopleController"
+                implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForRecordHome">
+    <aura:attribute name="myCat" type="Object"/>
+    <aura:attribute name="data" type="List"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="Id" />
+
+    <force:recordData aura:id="myCat"
+                      recordId="{!v.recordId}"
+                      targetFields="{!v.myCat}"
+                      fields="Cat_Breed__c,Name"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:card
+                    title="List of people that could be interested in this cat:" >
+        <div class="slds-p-around_medium">
+            <lightning:datatable data="{!v.data}"
+                                 columns="{!v.columns}"
+                                 keyField="id"
+                                 class="slds-scrollable--x"  hideCheckboxColumn="true"/>
+        </div>
+
+    </lightning:card>
+
+
+</aura:component>
